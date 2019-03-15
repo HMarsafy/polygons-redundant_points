@@ -1,0 +1,2065 @@
+#include<iostream>
+#include<string>
+#include<cstdlib>
+#include<stdlib.h>
+#include<vector>
+#include<math.h>
+using namespace std;
+void Inside_Rectangle(float a[][100],float b[][100],int A,vector<int> B, float max_x ,float min_x, float max_y ,float min_y)   
+{
+	vector<int> index;
+	for(int i=0; i<A ; i++)
+	{
+		float marsafy_x[100];
+	    float marsafy_y[100];
+		int count=0;
+		for(int j=0 ; j<B.at(i) ; j++)
+		{
+			marsafy_x[j]=a[i][j];
+			marsafy_y[j]=b[i][j];
+			count++;
+		}
+		vector<float> hassan_x;
+		vector<float> hassan_y;
+		for(int k=0 ; k<count ; k++)
+		{
+			hassan_x.push_back(marsafy_x[k]);
+			hassan_y.push_back(marsafy_y[k]);
+		}
+		int c=hassan_x.size();
+		for(int m=0; m<c-1 ; m++)
+		{
+			if((hassan_x[m]==hassan_x[m+1])&&(hassan_y[m]==hassan_y[m+1]))
+			{
+				hassan_x.erase(hassan_x.begin()+(m));
+				hassan_y.erase(hassan_y.begin()+(m));
+				c--;
+				m--;
+			}
+		}
+		for(int t=0 ; t<c-2 ; t++)
+		{
+			float mqam1=hassan_x[t+2]-hassan_x[t+1];
+		    float mqam2=hassan_x[t+1]-hassan_x[t];
+		    float slope1=(hassan_y[t+2]-hassan_y[t+1])/mqam1;
+		    float slope2=(hassan_y[t+1]-hassan_y[t])/mqam2;
+			if((slope1==slope2)||((mqam1==0)&&(mqam2==0)))
+		{
+			hassan_x.erase(hassan_x.begin()+(t+1));
+			hassan_y.erase(hassan_y.begin()+(t+1));
+			c--;
+			t--;
+
+		}
+		}
+		if(hassan_x[0]==hassan_x[c-1]&&hassan_y[0]==hassan_y[c-1])
+	{
+		hassan_x.erase(hassan_x.begin()+(c-1));
+		hassan_y.erase(hassan_y.begin()+(c-1));
+		c--;
+	}
+		float mqam3=hassan_x[0]-hassan_x[c-1];
+	    float mqam4=hassan_x[c-1]-hassan_x[c-2];
+	    float slope3=(hassan_y[0]-hassan_y[c-1])/mqam3;
+	    float slope4=(hassan_y[c-1]-hassan_y[c-2])/mqam4;
+	if((slope3==slope4)||((mqam3==0)&&(mqam4==0)))
+	{
+		hassan_x.erase(hassan_x.begin()+(c-1));
+		hassan_y.erase(hassan_y.begin()+(c-1));
+		c--;
+	}
+	float mqam5=hassan_x[1]-hassan_x[0];
+	float mqam6=hassan_x[0]-hassan_x[c-1];
+	float slope5=(hassan_y[1]-hassan_y[0])/mqam5;
+	float slope6=(hassan_y[0]-hassan_y[c-1])/mqam6;
+	
+	if((slope5==slope6)||((mqam5==0)&&(mqam6==0)))
+	{
+	    hassan_x.erase(hassan_x.begin());
+		hassan_y.erase(hassan_y.begin());
+		c--;
+	}
+	int count500=0;
+	for(int m=0 ; m<c ;m++)
+	{
+		if((hassan_x.at(m)<=max_x)&&(hassan_x.at(m)>=min_x))
+		{
+			if((hassan_y.at(m)<=max_y)&&(hassan_y.at(m)>=min_y))
+			{
+				count500++;
+			}
+		}
+	}
+	if (count500==c)
+	{
+		index.push_back(i+1);
+	}
+	}
+	int q=index.size();
+	if(q==0)
+	{
+		cout<<"none"<<"\n";
+	}
+	else
+	{
+	for(int i=0; i<q ; i++)
+	{
+		if(i==(q-1))
+		{
+			cout<<index.at(i)<<"\n";
+		}
+		else
+		{
+			cout<<index.at(i)<<",";
+		}
+	}
+	}
+	}
+int Polygons_Area_Range(float A, float B ,float C, int V)
+{
+	int T;
+	int M=0;
+	if((C>=A)&&(C<=B))
+	{
+		T=V;
+		return T;
+	}
+	else
+	{
+		return M;
+	}
+}
+float polygon_Area(float a[][100],float b[][100],int A , vector<int> B)  
+{
+	vector<float> mo7eet_x;
+	vector<float> mo7eet_y;
+	for(int j=0 ; j<B.at(A-1) ; j++)
+	{
+		mo7eet_x.push_back(a[A-1][j]);
+		mo7eet_y.push_back(b[A-1][j]);
+	}
+int c=mo7eet_x.size();
+for(int i=0 ; i<c-1; i++)
+	{
+		if(mo7eet_x[i]==mo7eet_x[i+1])
+		{
+			if(mo7eet_y[i]==mo7eet_y[i+1])
+			{
+				mo7eet_x.erase(mo7eet_x.begin()+(i));
+				mo7eet_y.erase(mo7eet_y.begin()+(i));
+			    c--;
+			    i--;
+			
+		}
+	}
+	}
+	for(int i=0 ; i<c-2 ; i++)
+	{
+		float mqam1=mo7eet_x[i+2]-mo7eet_x[i+1];
+		float mqam2=mo7eet_x[i+1]-mo7eet_x[i];
+		float slope1=(mo7eet_y[i+2]-mo7eet_y[i+1])/mqam1;
+		float slope2=(mo7eet_y[i+1]-mo7eet_y[i])/mqam2;
+
+		if((slope1==slope2)||((mqam1==0)&&(mqam2==0)))
+		{
+			mo7eet_x.erase(mo7eet_x.begin()+(i+1));
+			mo7eet_y.erase(mo7eet_y.begin()+(i+1));
+			c--;
+		}
+
+	}
+	if(mo7eet_x[0]==mo7eet_x[c-1]&&mo7eet_y[0]==mo7eet_y[c-1])
+	{
+		mo7eet_x.erase(mo7eet_x.begin()+(c-1));
+		mo7eet_y.erase(mo7eet_y.begin()+(c-1));
+		c--;
+	}
+	float mqam3=mo7eet_x[0]-mo7eet_x[c-1];
+	float mqam4=mo7eet_x[c-1]-mo7eet_x[c-2];
+	float slope3=(mo7eet_y[0]-mo7eet_y[c-1])/mqam3;
+	float slope4=(mo7eet_y[c-1]-mo7eet_y[c-2])/mqam4;
+	if((slope3==slope4)||((mqam3==0)&&(mqam4==0)))
+	{
+		mo7eet_x.erase(mo7eet_x.begin()+(c-1));
+		mo7eet_y.erase(mo7eet_y.begin()+(c-1));
+		c--;
+	}
+	float mqam5=mo7eet_x[1]-mo7eet_x[0];
+	float mqam6=mo7eet_x[0]-mo7eet_x[c-1];
+	float slope5=(mo7eet_y[1]-mo7eet_y[0])/mqam5;
+	float slope6=(mo7eet_y[0]-mo7eet_y[c-1])/mqam6;
+	
+	if((slope5==slope6)||((mqam5==0)&&(mqam6==0)))
+	{
+	    mo7eet_x.erase(mo7eet_x.begin());
+		mo7eet_y.erase(mo7eet_y.begin());
+		c--;
+	}
+	float area1=0;
+	float area=0;
+	for(int i=0;i<c-1 ; i++)
+	{
+		area1=area1+((mo7eet_x.at(i)*mo7eet_y.at(i+1))-(mo7eet_x.at(i+1)*mo7eet_y.at(i)));
+	}
+	area1=area1+((mo7eet_x.at(c-1)*mo7eet_y.at(0))-(mo7eet_x.at(0)*mo7eet_y.at(c-1)));
+	area=abs((area1)/2);
+	return area;
+}
+void Inside_Circle(float a[][100],float b[][100],int A,vector<int> B,float D ,float E  , float F )   
+{
+	vector<int> index;
+	for(int i=0; i<A ; i++)
+	{
+		float marsafy_x[100];
+	    float marsafy_y[100];
+		int count=0;
+		for(int j=0 ; j<B.at(i) ; j++)
+		{
+			marsafy_x[j]=a[i][j];
+			marsafy_y[j]=b[i][j];
+			count++;
+		}
+		vector<float> hassan_x;
+		vector<float> hassan_y;
+		for(int k=0 ; k<count ; k++)
+		{
+			hassan_x.push_back(marsafy_x[k]);
+			hassan_y.push_back(marsafy_y[k]);
+		}
+		int c=hassan_x.size();
+		for(int m=0; m<c-1 ; m++)
+		{
+			if((hassan_x[m]==hassan_x[m+1])&&(hassan_y[m]==hassan_y[m+1]))
+			{
+				hassan_x.erase(hassan_x.begin()+(m));
+				hassan_y.erase(hassan_y.begin()+(m));
+				c--;
+				m--;
+			}
+		}
+		for(int t=0 ; t<c-2 ; t++)
+		{
+			float mqam1=hassan_x[t+2]-hassan_x[t+1];
+		    float mqam2=hassan_x[t+1]-hassan_x[t];
+		    float slope1=(hassan_y[t+2]-hassan_y[t+1])/mqam1;
+		    float slope2=(hassan_y[t+1]-hassan_y[t])/mqam2;
+			if((slope1==slope2)||((mqam1==0)&&(mqam2==0)))
+		{
+			hassan_x.erase(hassan_x.begin()+(t+1));
+			hassan_y.erase(hassan_y.begin()+(t+1));
+			c--;
+			t--;
+
+		}
+		}
+		if(hassan_x[0]==hassan_x[c-1]&&hassan_y[0]==hassan_y[c-1])
+	{
+		hassan_x.erase(hassan_x.begin()+(c-1));
+		hassan_y.erase(hassan_y.begin()+(c-1));
+		c--;
+	}
+		float mqam3=hassan_x[0]-hassan_x[c-1];
+	    float mqam4=hassan_x[c-1]-hassan_x[c-2];
+	    float slope3=(hassan_y[0]-hassan_y[c-1])/mqam3;
+	    float slope4=(hassan_y[c-1]-hassan_y[c-2])/mqam4;
+	if((slope3==slope4)||((mqam3==0)&&(mqam4==0)))
+	{
+		hassan_x.erase(hassan_x.begin()+(c-1));
+		hassan_y.erase(hassan_y.begin()+(c-1));
+		c--;
+	}
+	float mqam5=hassan_x[1]-hassan_x[0];
+	float mqam6=hassan_x[0]-hassan_x[c-1];
+	float slope5=(hassan_y[1]-hassan_y[0])/mqam5;
+	float slope6=(hassan_y[0]-hassan_y[c-1])/mqam6;
+	
+	if((slope5==slope6)||((mqam5==0)&&(mqam6==0)))
+	{
+	    hassan_x.erase(hassan_x.begin());
+		hassan_y.erase(hassan_y.begin());
+		c--;
+	}
+	int count50=0;
+	float d1;
+	for(int r=0 ;r<c ; r++)
+	{
+		d1=sqrt(pow(hassan_x.at(r)-D,2)+pow(hassan_y.at(r)-E,2));
+		if(d1<=F)
+		{
+			count50++;
+		}
+	}
+	if(count50==c)
+	{
+		index.push_back(i+1);
+	}
+	}
+		
+	
+	int q=index.size();
+	for(int i=0; i<q ; i++)
+	{
+		if(i==(q-1))
+		{
+			cout<<index.at(i)<<"\n";
+		}
+		else
+		{
+			cout<<index.at(i)<<",";
+		}
+	}
+}
+void list_trapazoid(float a[][100],float b[][100],int A,vector<int> B)   
+{
+	vector<int> index;
+	for(int i=0; i<A ; i++)
+	{
+		float marsafy_x[100];
+	    float marsafy_y[100];
+		int count=0;
+		for(int j=0 ; j<B.at(i) ; j++)
+		{
+			marsafy_x[j]=a[i][j];
+			marsafy_y[j]=b[i][j];
+			count++;
+		}
+		vector<float> hassan_x;
+		vector<float> hassan_y;
+		for(int k=0 ; k<count ; k++)
+		{
+			hassan_x.push_back(marsafy_x[k]);
+			hassan_y.push_back(marsafy_y[k]);
+		}
+		int c=hassan_x.size();
+		for(int m=0; m<c-1 ; m++)
+		{
+			if((hassan_x[m]==hassan_x[m+1])&&(hassan_y[m]==hassan_y[m+1]))
+			{
+				hassan_x.erase(hassan_x.begin()+(m));
+				hassan_y.erase(hassan_y.begin()+(m));
+				c--;
+				m--;
+			}
+		}
+		for(int t=0 ; t<c-2 ; t++)
+		{
+			float mqam1=hassan_x[t+2]-hassan_x[t+1];
+		    float mqam2=hassan_x[t+1]-hassan_x[t];
+		    float slope1=(hassan_y[t+2]-hassan_y[t+1])/mqam1;
+		    float slope2=(hassan_y[t+1]-hassan_y[t])/mqam2;
+			if((slope1==slope2)||((mqam1==0)&&(mqam2==0)))
+		{
+			hassan_x.erase(hassan_x.begin()+(t+1));
+			hassan_y.erase(hassan_y.begin()+(t+1));
+			c--;
+			t--;
+
+		}
+		}
+		if(hassan_x[0]==hassan_x[c-1]&&hassan_y[0]==hassan_y[c-1])
+	{
+		hassan_x.erase(hassan_x.begin()+(c-1));
+		hassan_y.erase(hassan_y.begin()+(c-1));
+		c--;
+	}
+		float mqam3=hassan_x[0]-hassan_x[c-1];
+	    float mqam4=hassan_x[c-1]-hassan_x[c-2];
+	    float slope3=(hassan_y[0]-hassan_y[c-1])/mqam3;
+	    float slope4=(hassan_y[c-1]-hassan_y[c-2])/mqam4;
+	if((slope3==slope4)||((mqam3==0)&&(mqam4==0)))
+	{
+		hassan_x.erase(hassan_x.begin()+(c-1));
+		hassan_y.erase(hassan_y.begin()+(c-1));
+		c--;
+	}
+	float mqam5=hassan_x[1]-hassan_x[0];
+	float mqam6=hassan_x[0]-hassan_x[c-1];
+	float slope5=(hassan_y[1]-hassan_y[0])/mqam5;
+	float slope6=(hassan_y[0]-hassan_y[c-1])/mqam6;
+	
+	if((slope5==slope6)||((mqam5==0)&&(mqam6==0)))
+	{
+	    hassan_x.erase(hassan_x.begin());
+		hassan_y.erase(hassan_y.begin());
+		c--;
+	}
+	if(c==4)
+	{
+		float mqam7=(hassan_x.at(0))-(hassan_x.at(1));
+		float mqam8=(hassan_x.at(3))-(hassan_x.at(2));
+		float mqam9=(hassan_x.at(1))-(hassan_x.at(2));
+		float mqam10=(hassan_x.at(0))-(hassan_x.at(3));
+		float slope7=((hassan_y.at(0))-(hassan_y.at(1)))/mqam7;
+		float slope8=((hassan_y.at(3))-(hassan_y.at(2)))/mqam8;
+		float slope9=((hassan_y.at(1))-(hassan_y.at(2)))/mqam9;
+		float slope10=((hassan_y.at(0))-(hassan_y.at(3)))/mqam10;
+		if(((slope7==slope8)&&(slope9!=slope10))||((mqam7==0)&&(mqam8==0)&&(slope9!=slope10)))
+		{
+			float D1=sqrt(pow(hassan_x.at(0)-hassan_x.at(1),2)+pow(hassan_y.at(0)-hassan_y.at(1),2));
+			float D3=sqrt(pow(hassan_x.at(2)-hassan_x.at(3),2)+pow(hassan_y.at(2)-hassan_y.at(3),2));
+			if((D1)!=(D3))
+			{
+				index.push_back(i+1);
+			}
+		}
+	if(((slope10==slope9)&&(slope7!=slope8))||((mqam10==0)&&(mqam9==0)&&(slope7!=slope8)))
+	{
+		float D1=sqrt(pow(hassan_x.at(0)-hassan_x.at(3),2)+pow(hassan_y.at(0)-hassan_y.at(3),2));
+			float D3=sqrt(pow(hassan_x.at(2)-hassan_x.at(1),2)+pow(hassan_y.at(2)-hassan_y.at(1),2));
+			if((D1)!=(D3))
+			{
+				index.push_back(i+1);
+			}
+	}
+	}
+	}
+	int q=index.size();
+	for(int i=0; i<q ; i++)
+	{
+		if(i==(q-1))
+		{
+			cout<<index.at(i)<<"\n";
+		}
+		else
+		{
+			cout<<index.at(i)<<",";
+		}
+	}
+	}
+void list_rectangles(float a[][100],float b[][100],int A,vector<int> B)   
+{
+	vector<int> index;
+	for(int i=0; i<A ; i++)
+	{
+		float marsafy_x[100];
+	    float marsafy_y[100];
+		int count=0;
+		for(int j=0 ; j<B.at(i) ; j++)
+		{
+			marsafy_x[j]=a[i][j];
+			marsafy_y[j]=b[i][j];
+			count++;
+		}
+		vector<float> hassan_x;
+		vector<float> hassan_y;
+		for(int k=0 ; k<count ; k++)
+		{
+			hassan_x.push_back(marsafy_x[k]);
+			hassan_y.push_back(marsafy_y[k]);
+		}
+		int c=hassan_x.size();
+		for(int m=0; m<c-1 ; m++)
+		{
+			if((hassan_x[m]==hassan_x[m+1])&&(hassan_y[m]==hassan_y[m+1]))
+			{
+				hassan_x.erase(hassan_x.begin()+(m));
+				hassan_y.erase(hassan_y.begin()+(m));
+				c--;
+				m--;
+			}
+		}
+		for(int t=0 ; t<c-2 ; t++)
+		{
+			float mqam1=hassan_x[t+2]-hassan_x[t+1];
+		    float mqam2=hassan_x[t+1]-hassan_x[t];
+		    float slope1=(hassan_y[t+2]-hassan_y[t+1])/mqam1;
+		    float slope2=(hassan_y[t+1]-hassan_y[t])/mqam2;
+			if((slope1==slope2)||((mqam1==0)&&(mqam2==0)))
+		{
+			hassan_x.erase(hassan_x.begin()+(t+1));
+			hassan_y.erase(hassan_y.begin()+(t+1));
+			c--;
+			t--;
+
+		}
+		}
+		if(hassan_x[0]==hassan_x[c-1]&&hassan_y[0]==hassan_y[c-1])
+	{
+		hassan_x.erase(hassan_x.begin()+(c-1));
+		hassan_y.erase(hassan_y.begin()+(c-1));
+		c--;
+	}
+		float mqam3=hassan_x[0]-hassan_x[c-1];
+	    float mqam4=hassan_x[c-1]-hassan_x[c-2];
+	    float slope3=(hassan_y[0]-hassan_y[c-1])/mqam3;
+	    float slope4=(hassan_y[c-1]-hassan_y[c-2])/mqam4;
+	if((slope3==slope4)||((mqam3==0)&&(mqam4==0)))
+	{
+		hassan_x.erase(hassan_x.begin()+(c-1));
+		hassan_y.erase(hassan_y.begin()+(c-1));
+		c--;
+	}
+	float mqam5=hassan_x[1]-hassan_x[0];
+	float mqam6=hassan_x[0]-hassan_x[c-1];
+	float slope5=(hassan_y[1]-hassan_y[0])/mqam5;
+	float slope6=(hassan_y[0]-hassan_y[c-1])/mqam6;
+	
+	if((slope5==slope6)||((mqam5==0)&&(mqam6==0)))
+	{
+	    hassan_x.erase(hassan_x.begin());
+		hassan_y.erase(hassan_y.begin());
+		c--;
+	}
+	if(c==4)
+	{
+		float mqam7=(hassan_x.at(0))-(hassan_x.at(1));
+		float mqam8=(hassan_x.at(3))-(hassan_x.at(2));
+		float mqam9=(hassan_x.at(1))-(hassan_x.at(2));
+		float mqam10=(hassan_x.at(2))-(hassan_x.at(3));
+		float slope7=((hassan_y.at(0))-(hassan_y.at(1)))/mqam7;
+		float slope8=((hassan_y.at(3))-(hassan_y.at(2)))/mqam8;
+		float slope9=((hassan_y.at(1))-(hassan_y.at(2)))/mqam9;
+		float slope10=((hassan_y.at(2))-(hassan_y.at(3)))/mqam10;
+
+		if((slope7==slope8)||((mqam7==0)&&(mqam8==0)))
+		{
+			float D1=sqrt(pow(hassan_x.at(0)-hassan_x.at(1),2)+pow(hassan_y.at(0)-hassan_y.at(1),2));
+			float D2=sqrt(pow(hassan_x.at(1)-hassan_x.at(2),2)+pow(hassan_y.at(1)-hassan_y.at(2),2));
+			float D3=sqrt(pow(hassan_x.at(2)-hassan_x.at(3),2)+pow(hassan_y.at(2)-hassan_y.at(3),2));
+			
+			if((D1==D3)&&(D1!=D2))
+			{
+				float x1=slope7;
+				float x2=slope9;
+				float x3=slope10;
+				if(((x1*x2)==(x2*x3))||(mqam7==0)&&(mqam10==0)||(mqam9==0))
+				{
+					index.push_back(i+1);
+				}
+
+			}
+		
+		}
+	}
+	}
+	int q=index.size();
+	for(int i=0; i<q ; i++)
+	{
+		if(i==(q-1))
+		{
+			cout<<index.at(i)<<"\n";
+		}
+		else
+		{
+			cout<<index.at(i)<<",";
+		}
+	}
+	}
+void list_triangles(float a[][100],float b[][100],int A,vector<int> B)   
+{
+	vector<int> index;
+	for(int i=0; i<A ; i++)
+	{
+		float marsafy_x[100];
+	    float marsafy_y[100];
+		int count=0;
+		for(int j=0 ; j<B.at(i) ; j++)
+		{
+			marsafy_x[j]=a[i][j];
+			marsafy_y[j]=b[i][j];
+			count++;
+		}
+		vector<float> hassan_x;
+		vector<float> hassan_y;
+		for(int k=0 ; k<count ; k++)
+		{
+			hassan_x.push_back(marsafy_x[k]);
+			hassan_y.push_back(marsafy_y[k]);
+		}
+		int c=hassan_x.size();
+		for(int m=0; m<c-1 ; m++)
+		{
+			if((hassan_x[m]==hassan_x[m+1])&&(hassan_y[m]==hassan_y[m+1]))
+			{
+				hassan_x.erase(hassan_x.begin()+(m));
+				hassan_y.erase(hassan_y.begin()+(m));
+				c--;
+				m--;
+			}
+		}
+		for(int t=0 ; t<c-2 ; t++)
+		{
+			float mqam1=hassan_x[t+2]-hassan_x[t+1];
+		    float mqam2=hassan_x[t+1]-hassan_x[t];
+		    float slope1=(hassan_y[t+2]-hassan_y[t+1])/mqam1;
+		    float slope2=(hassan_y[t+1]-hassan_y[t])/mqam2;
+			if((slope1==slope2)||((mqam1==0)&&(mqam2==0)))
+		{
+			hassan_x.erase(hassan_x.begin()+(t+1));
+			hassan_y.erase(hassan_y.begin()+(t+1));
+			c--;
+			t--;
+
+		}
+		}
+		if(hassan_x[0]==hassan_x[c-1]&&hassan_y[0]==hassan_y[c-1])
+	{
+		hassan_x.erase(hassan_x.begin()+(c-1));
+		hassan_y.erase(hassan_y.begin()+(c-1));
+		c--;
+	}
+		float mqam3=hassan_x[0]-hassan_x[c-1];
+	    float mqam4=hassan_x[c-1]-hassan_x[c-2];
+	    float slope3=(hassan_y[0]-hassan_y[c-1])/mqam3;
+	    float slope4=(hassan_y[c-1]-hassan_y[c-2])/mqam4;
+	if((slope3==slope4)||((mqam3==0)&&(mqam4==0)))
+	{
+		hassan_x.erase(hassan_x.begin()+(c-1));
+		hassan_y.erase(hassan_y.begin()+(c-1));
+		c--;
+	}
+	float mqam5=hassan_x[1]-hassan_x[0];
+	float mqam6=hassan_x[0]-hassan_x[c-1];
+	float slope5=(hassan_y[1]-hassan_y[0])/mqam5;
+	float slope6=(hassan_y[0]-hassan_y[c-1])/mqam6;
+	
+	if((slope5==slope6)||((mqam5==0)&&(mqam6==0)))
+	{
+	    hassan_x.erase(hassan_x.begin());
+		hassan_y.erase(hassan_y.begin());
+		c--;
+	}
+	if(c==3)
+	{
+		index.push_back(i+1);
+	}
+	}
+	int s=index.size();
+	if(s==0)
+	{
+		cout<<"none"<<"\n";
+	}
+	for(int i=0 ; i<s ; i++)
+	{
+		if(i==(s-1))
+		{
+			cout<<index.at(i)<<"\n";
+		}
+		else
+		{
+			cout<<index.at(i)<<",";
+		}
+	}
+}
+void polygon_perimeter(float a[][100],float b[][100],int A , vector<int> B)  //operation 9 in level 2.
+{
+	vector<float> mo7eet_x;
+	vector<float> mo7eet_y;
+	for(int j=0 ; j<B.at(A-1) ; j++)
+	{
+		mo7eet_x.push_back(a[A-1][j]);
+		mo7eet_y.push_back(b[A-1][j]);
+	}
+int c=mo7eet_x.size();
+for(int i=0 ; i<c-1; i++)
+	{
+		if(mo7eet_x[i]==mo7eet_x[i+1])
+		{
+			if(mo7eet_y[i]==mo7eet_y[i+1])
+			{
+				mo7eet_x.erase(mo7eet_x.begin()+(i));
+				mo7eet_y.erase(mo7eet_y.begin()+(i));
+			    c--;
+			    i--;
+			
+		}
+	}
+	}
+	for(int i=0 ; i<c-2 ; i++)
+	{
+		float mqam1=mo7eet_x[i+2]-mo7eet_x[i+1];
+		float mqam2=mo7eet_x[i+1]-mo7eet_x[i];
+		float slope1=(mo7eet_y[i+2]-mo7eet_y[i+1])/mqam1;
+		float slope2=(mo7eet_y[i+1]-mo7eet_y[i])/mqam2;
+
+		if((slope1==slope2)||((mqam1==0)&&(mqam2==0)))
+		{
+			mo7eet_x.erase(mo7eet_x.begin()+(i+1));
+			mo7eet_y.erase(mo7eet_y.begin()+(i+1));
+			c--;
+		}
+
+	}
+	if(mo7eet_x[0]==mo7eet_x[c-1]&&mo7eet_y[0]==mo7eet_y[c-1])
+	{
+		mo7eet_x.erase(mo7eet_x.begin()+(c-1));
+		mo7eet_y.erase(mo7eet_y.begin()+(c-1));
+		c--;
+	}
+	float mqam3=mo7eet_x[0]-mo7eet_x[c-1];
+	float mqam4=mo7eet_x[c-1]-mo7eet_x[c-2];
+	float slope3=(mo7eet_y[0]-mo7eet_y[c-1])/mqam3;
+	float slope4=(mo7eet_y[c-1]-mo7eet_y[c-2])/mqam4;
+	if((slope3==slope4)||((mqam3==0)&&(mqam4==0)))
+	{
+		mo7eet_x.erase(mo7eet_x.begin()+(c-1));
+		mo7eet_y.erase(mo7eet_y.begin()+(c-1));
+		c--;
+	}
+	float mqam5=mo7eet_x[1]-mo7eet_x[0];
+	float mqam6=mo7eet_x[0]-mo7eet_x[c-1];
+	float slope5=(mo7eet_y[1]-mo7eet_y[0])/mqam5;
+	float slope6=(mo7eet_y[0]-mo7eet_y[c-1])/mqam6;
+	
+	if((slope5==slope6)||((mqam5==0)&&(mqam6==0)))
+	{
+	    mo7eet_x.erase(mo7eet_x.begin());
+		mo7eet_y.erase(mo7eet_y.begin());
+		c--;
+	}
+	float mo7eet1=0;
+	float mo7eet2;
+	for(int i=0 ;i<c-1 ; i++)
+	{
+		float x1=mo7eet_x.at(i);
+		float x2=mo7eet_x.at(i+1);
+		float y1=mo7eet_y.at(i);
+		float y2=mo7eet_y.at(i+1);
+		float D=sqrt(pow((x1-x2),2)+pow((y1-y2),2));
+		mo7eet1=mo7eet1+D;
+	}
+	mo7eet2=mo7eet1+(sqrt(pow((mo7eet_x.at(c-1)-mo7eet_x.at(0)),2)+pow((mo7eet_y.at(c-1)-mo7eet_y.at(0)),2)));
+	cout<<mo7eet2<<"\n";
+}
+void list_points_equal(float a[][100],float b[][100],int A,vector<int> B , int D)     //operation 8 level 2.
+{
+	vector<float> ta5zeen_x;
+	vector<float> ta5zeen_y;
+	vector<int> inner_index2;
+	vector<float> hassan_x;
+    vector<float> hassan_y;
+	float marsafy_x[100][100];
+	float marsafy_y[100][100];
+	for(int i=0 ; i<A ; i++)
+	{
+		int count=0;
+		for(int j=0 ;j<B.at(i) ; j++)
+		{
+			hassan_x.push_back(a[i][j]);
+			hassan_y.push_back(b[i][j]);
+		}
+		int c=hassan_x.size();
+		for(int m=0; m<c-1 ; m++)
+		{
+			if((hassan_x[m]==hassan_x[m+1])&&(hassan_y[m]==hassan_y[m+1]))
+			{
+				hassan_x.erase(hassan_x.begin()+(m));
+				hassan_y.erase(hassan_y.begin()+(m));
+				c--;
+				m--;
+			}
+		}
+		if((hassan_x[0]==hassan_x[c-1])&&(hassan_y[0]==hassan_y[c-1]))
+		{
+			hassan_x.erase(hassan_x.begin()+(c-1));
+			hassan_y.erase(hassan_y.begin()+(c-1));
+			c--;
+		}
+		for(int t=0 ; t<c ; t++)
+		{
+			marsafy_x[i][t]=hassan_x.at(t);
+			marsafy_y[i][t]=hassan_y.at(t);
+			count++;
+		}
+		inner_index2.push_back(count);
+		hassan_x.clear();
+		hassan_y.clear();
+	}
+	int count1=0;
+	for(int i=0 ;i<A ; i++)
+	{
+		float x;
+		float y;
+		for(int j=0 ; j<inner_index2.at(i) ; j++)
+		{
+			x=marsafy_x[i][j];
+			y=marsafy_y[i][j];
+			for(int m=0 ;m<A ; m++)
+			{
+				for(int k=0 ; k<inner_index2.at(m) ;k++)
+				{
+					if((x==marsafy_x[m][k])&&(y==marsafy_y[m][k]))
+					{
+						count1++;
+					}
+				}
+			}
+			if(count1==D)
+			{
+				ta5zeen_x.push_back(x);
+				ta5zeen_y.push_back(y);
+			}
+			count1=0;
+		}
+	}
+	int o=ta5zeen_x.size();
+
+	if(o==0)
+	{
+		cout<<"none"<<"\n";
+	}
+	else 
+	{
+		int count5=0;
+		for(int i=0 ;i<o; i++)
+		{
+			float x=ta5zeen_x[i];
+			float y=ta5zeen_y[i];
+			for(int j=0 ;j<o-1 ; j++)
+			{
+				if(j==i)
+				{
+					count5++;
+				}
+				else
+				{
+					if((x==ta5zeen_x[j])&&(y==ta5zeen_y[j]))
+					{
+						ta5zeen_x.erase(ta5zeen_x.begin()+j);
+						ta5zeen_y.erase(ta5zeen_y.begin()+j);
+						o--;
+					}
+				}
+			}
+		}
+	}
+	for(int i=0 ;i<o ; i++)
+	{
+		if(i==(o-1))
+		{
+			cout<<"("<<ta5zeen_x.at(i)<<","<<ta5zeen_y.at(i)<<")"<<"\n";
+		}
+		else
+		{
+			cout<<"("<<ta5zeen_x.at(i)<<","<<ta5zeen_y.at(i)<<")"<<",";
+		}
+	}
+}
+void list_points_less(float a[][100],float b[][100],int A,vector<int> B , int D)        // operation 7 level 2
+{
+	vector<float> ta5zeen_x;
+	vector<float> ta5zeen_y;
+	vector<int> inner_index2;
+	vector<float> hassan_x;
+    vector<float> hassan_y;
+	float marsafy_x[100][100];
+	float marsafy_y[100][100];
+	for(int i=0 ; i<A ; i++)
+	{
+		int count=0;
+		for(int j=0 ;j<B.at(i) ; j++)
+		{
+			hassan_x.push_back(a[i][j]);
+			hassan_y.push_back(b[i][j]);
+		}
+		int c=hassan_x.size();
+		for(int m=0; m<c-1 ; m++)
+		{
+			if((hassan_x[m]==hassan_x[m+1])&&(hassan_y[m]==hassan_y[m+1]))
+			{
+				hassan_x.erase(hassan_x.begin()+(m));
+				hassan_y.erase(hassan_y.begin()+(m));
+				c--;
+				m--;
+			}
+		}
+		if((hassan_x[0]==hassan_x[c-1])&&(hassan_y[0]==hassan_y[c-1]))
+		{
+			hassan_x.erase(hassan_x.begin()+(c-1));
+			hassan_y.erase(hassan_y.begin()+(c-1));
+			c--;
+		}
+		for(int t=0 ; t<c ; t++)
+		{
+			marsafy_x[i][t]=hassan_x.at(t);
+			marsafy_y[i][t]=hassan_y.at(t);
+			count++;
+		}
+		inner_index2.push_back(count);
+		hassan_x.clear();
+		hassan_y.clear();
+	}
+	int count1=0;
+	for(int i=0 ;i<A ; i++)
+	{
+		float x;
+		float y;
+		for(int j=0 ; j<inner_index2.at(i) ; j++)
+		{
+			x=marsafy_x[i][j];
+			y=marsafy_y[i][j];
+			for(int m=0 ;m<A ; m++)
+			{
+				for(int k=0 ; k<inner_index2.at(m) ;k++)
+				{
+					if((x==marsafy_x[m][k])&&(y==marsafy_y[m][k]))
+					{
+						count1++;
+					}
+				}
+			}
+			if(count1<D)
+			{
+				ta5zeen_x.push_back(x);
+				ta5zeen_y.push_back(y);
+			}
+			count1=0;
+		}
+	}
+	int o=ta5zeen_x.size();
+	if(o==0)
+	{
+		cout<<"none"<<"\n";
+	}else 
+	{
+		int count5=0;
+		for(int i=0 ;i<o; i++)
+		{
+			float x=ta5zeen_x[i];
+			float y=ta5zeen_y[i];
+			for(int j=0 ;j<o-1 ; j++)
+			{
+				if(j==i)
+				{
+					count5++;
+				}
+				else
+				{
+					if((x==ta5zeen_x[j])&&(y==ta5zeen_y[j]))
+					{
+						ta5zeen_x.erase(ta5zeen_x.begin()+j);
+						ta5zeen_y.erase(ta5zeen_y.begin()+j);
+						o--;
+					}
+				}
+			}
+		}
+	}
+	for(int i=0 ;i<o ; i++)
+	{
+		if(i==(o-1))
+		{
+			cout<<"("<<ta5zeen_x.at(i)<<","<<ta5zeen_y.at(i)<<")"<<"\n";
+		}
+		else
+		{
+			cout<<"("<<ta5zeen_x.at(i)<<","<<ta5zeen_y.at(i)<<")"<<",";
+		}
+	}
+}
+void list_points_more(float a[][100],float b[][100],int A,vector<int> B , int D)       // operation 6 in level 2.
+{
+	vector<float> ta5zeen_x;
+	vector<float> ta5zeen_y;
+	vector<int> inner_index2;
+	vector<float> hassan_x;
+    vector<float> hassan_y;
+	float marsafy_x[100][100];
+	float marsafy_y[100][100];
+	for(int i=0 ; i<A ; i++)
+	{
+		int count=0;
+		for(int j=0 ;j<B.at(i) ; j++)
+		{
+			hassan_x.push_back(a[i][j]);
+			hassan_y.push_back(b[i][j]);
+		}
+		int c=hassan_x.size();
+		for(int m=0; m<c-1 ; m++)
+		{
+			if((hassan_x[m]==hassan_x[m+1])&&(hassan_y[m]==hassan_y[m+1]))
+			{
+				hassan_x.erase(hassan_x.begin()+(m));
+				hassan_y.erase(hassan_y.begin()+(m));
+				c--;
+				m--;
+			}
+		}
+		if((hassan_x[0]==hassan_x[c-1])&&(hassan_y[0]==hassan_y[c-1]))
+		{
+			hassan_x.erase(hassan_x.begin()+(c-1));
+			hassan_y.erase(hassan_y.begin()+(c-1));
+			c--;
+		}
+
+		for(int t=0 ; t<c ; t++)
+		{
+			marsafy_x[i][t]=hassan_x.at(t);
+			marsafy_y[i][t]=hassan_y.at(t);
+			count++;
+		}
+		inner_index2.push_back(count);
+		hassan_x.clear();
+		hassan_y.clear();
+	}
+	int count1=0;
+	for(int i=0 ;i<A ; i++)
+	{
+		float x;
+		float y;
+		for(int j=0 ; j<inner_index2.at(i) ; j++)
+		{
+			x=marsafy_x[i][j];
+			y=marsafy_y[i][j];
+			for(int m=0 ;m<A ; m++)
+			{
+				for(int k=0 ; k<inner_index2.at(m) ;k++)
+				{
+					if((x==marsafy_x[m][k])&&(y==marsafy_y[m][k]))
+					{
+						count1++;
+					}
+				}
+			}
+			if(count1>D)
+			{
+				ta5zeen_x.push_back(x);
+				ta5zeen_y.push_back(y);
+			}
+			count1=0;
+		}
+	}
+	int o=ta5zeen_x.size();
+	if(o==0)
+	{
+		cout<<"none"<<"\n";
+	}
+	else 
+	{
+		int count5=0;
+		for(int i=0 ;i<o; i++)
+		{
+			float x=ta5zeen_x[i];
+			float y=ta5zeen_y[i];
+			for(int j=0 ;j<o-1 ; j++)
+			{
+				if(j==i)
+				{
+					count5++;
+				}
+				else
+				{
+					if((x==ta5zeen_x[j])&&(y==ta5zeen_y[j]))
+					{
+						ta5zeen_x.erase(ta5zeen_x.begin()+j);
+						ta5zeen_y.erase(ta5zeen_y.begin()+j);
+						o--;
+					}
+				}
+			}
+		}
+	}
+	for(int i=0 ;i<o ; i++)
+	{
+		if(i==(o-1))
+		{
+			cout<<"("<<ta5zeen_x.at(i)<<","<<ta5zeen_y.at(i)<<")"<<"\n";
+		}
+		else
+		{
+			cout<<"("<<ta5zeen_x.at(i)<<","<<ta5zeen_y.at(i)<<")"<<",";
+		}
+	}
+}
+void list_polygon_equal(float a[][100],float b[][100],int A,vector<int> B,int D)   //operation 5 level 2.
+{
+	vector<int> index;
+	for(int i=0; i<A ; i++)
+	{
+		float marsafy_x[100];
+	    float marsafy_y[100];
+		int count=0;
+		for(int j=0 ; j<B.at(i) ; j++)
+		{
+			marsafy_x[j]=a[i][j];
+			marsafy_y[j]=b[i][j];
+			count++;
+		}
+		vector<float> hassan_x;
+		vector<float> hassan_y;
+		for(int k=0 ; k<count ; k++)
+		{
+			hassan_x.push_back(marsafy_x[k]);
+			hassan_y.push_back(marsafy_y[k]);
+		}
+		int c=hassan_x.size();
+		for(int m=0; m<c-1 ; m++)
+		{
+			if((hassan_x[m]==hassan_x[m+1])&&(hassan_y[m]==hassan_y[m+1]))
+			{
+				hassan_x.erase(hassan_x.begin()+(m));
+				hassan_y.erase(hassan_y.begin()+(m));
+				c--;
+				m--;
+			}
+		}
+		for(int t=0 ; t<c-2 ; t++)
+		{
+			float mqam1=hassan_x[t+2]-hassan_x[t+1];
+		    float mqam2=hassan_x[t+1]-hassan_x[t];
+		    float slope1=(hassan_y[t+2]-hassan_y[t+1])/mqam1;
+		    float slope2=(hassan_y[t+1]-hassan_y[t])/mqam2;
+			if((slope1==slope2)||((mqam1==0)&&(mqam2==0)))
+		{
+			hassan_x.erase(hassan_x.begin()+(t+1));
+			hassan_y.erase(hassan_y.begin()+(t+1));
+			c--;
+			t--;
+
+		}
+		}
+		if(hassan_x[0]==hassan_x[c-1]&&hassan_y[0]==hassan_y[c-1])
+	{
+		hassan_x.erase(hassan_x.begin()+(c-1));
+		hassan_y.erase(hassan_y.begin()+(c-1));
+		c--;
+	}
+		float mqam3=hassan_x[0]-hassan_x[c-1];
+	    float mqam4=hassan_x[c-1]-hassan_x[c-2];
+	    float slope3=(hassan_y[0]-hassan_y[c-1])/mqam3;
+	    float slope4=(hassan_y[c-1]-hassan_y[c-2])/mqam4;
+	if((slope3==slope4)||((mqam3==0)&&(mqam4==0)))
+	{
+		hassan_x.erase(hassan_x.begin()+(c-1));
+		hassan_y.erase(hassan_y.begin()+(c-1));
+		c--;
+	}
+	float mqam5=hassan_x[1]-hassan_x[0];
+	float mqam6=hassan_x[0]-hassan_x[c-1];
+	float slope5=(hassan_y[1]-hassan_y[0])/mqam5;
+	float slope6=(hassan_y[0]-hassan_y[c-1])/mqam6;
+	
+	if((slope5==slope6)||((mqam5==0)&&(mqam6==0)))
+	{
+	    hassan_x.erase(hassan_x.begin());
+		hassan_y.erase(hassan_y.begin());
+		c--;
+	}
+	if(c==D)
+	{
+		index.push_back(i+1);
+	}
+	}
+	int s=index.size();
+	if(s==0)
+	{
+		cout<<"none"<<"\n";
+	}
+	for(int i=0 ; i<s ; i++)
+	{
+		if(i==(s-1))
+		{
+			cout<<index.at(i)<<"\n";
+		}
+		else
+		{
+			cout<<index.at(i)<<",";
+		}
+	}
+}
+void list_polygon_less(float a[][100],float b[][100],int A,vector<int> B,int D)   //operation 4 level 2.
+{
+	vector<int> index;
+	for(int i=0; i<A ; i++)
+	{
+		float marsafy_x[100];
+	    float marsafy_y[100];
+		int count=0;
+		for(int j=0 ; j<B.at(i) ; j++)
+		{
+			marsafy_x[j]=a[i][j];
+			marsafy_y[j]=b[i][j];
+			count++;
+		}
+		vector<float> hassan_x;
+		vector<float> hassan_y;
+		for(int k=0 ; k<count ; k++)
+		{
+			hassan_x.push_back(marsafy_x[k]);
+			hassan_y.push_back(marsafy_y[k]);
+		}
+		int c=hassan_x.size();
+		for(int m=0; m<c-1 ; m++)
+		{
+			if((hassan_x[m]==hassan_x[m+1])&&(hassan_y[m]==hassan_y[m+1]))
+			{
+				hassan_x.erase(hassan_x.begin()+(m));
+				hassan_y.erase(hassan_y.begin()+(m));
+				c--;
+				m--;
+			}
+		}
+		for(int t=0 ; t<c-2 ; t++)
+		{
+			float mqam1=hassan_x[t+2]-hassan_x[t+1];
+		    float mqam2=hassan_x[t+1]-hassan_x[t];
+		    float slope1=(hassan_y[t+2]-hassan_y[t+1])/mqam1;
+		    float slope2=(hassan_y[t+1]-hassan_y[t])/mqam2;
+			if((slope1==slope2)||((mqam1==0)&&(mqam2==0)))
+		{
+			hassan_x.erase(hassan_x.begin()+(t+1));
+			hassan_y.erase(hassan_y.begin()+(t+1));
+			c--;
+			t--;
+
+		}
+		}
+		if(hassan_x[0]==hassan_x[c-1]&&hassan_y[0]==hassan_y[c-1])
+	{
+		hassan_x.erase(hassan_x.begin()+(c-1));
+		hassan_y.erase(hassan_y.begin()+(c-1));
+		c--;
+	}
+		float mqam3=hassan_x[0]-hassan_x[c-1];
+	    float mqam4=hassan_x[c-1]-hassan_x[c-2];
+	    float slope3=(hassan_y[0]-hassan_y[c-1])/mqam3;
+	    float slope4=(hassan_y[c-1]-hassan_y[c-2])/mqam4;
+	if((slope3==slope4)||((mqam3==0)&&(mqam4==0)))
+	{
+		hassan_x.erase(hassan_x.begin()+(c-1));
+		hassan_y.erase(hassan_y.begin()+(c-1));
+		c--;
+	}
+	float mqam5=hassan_x[1]-hassan_x[0];
+	float mqam6=hassan_x[0]-hassan_x[c-1];
+	float slope5=(hassan_y[1]-hassan_y[0])/mqam5;
+	float slope6=(hassan_y[0]-hassan_y[c-1])/mqam6;
+	
+	if((slope5==slope6)||((mqam5==0)&&(mqam6==0)))
+	{
+	    hassan_x.erase(hassan_x.begin());
+		hassan_y.erase(hassan_y.begin());
+		c--;
+	}
+	if(c<D)
+	{
+		index.push_back(i+1);
+	}
+	}
+	int s=index.size();
+	if(s==0)
+	{
+		cout<<"none"<<"\n";
+	}
+	for(int i=0 ; i<s ; i++)
+	{
+		if(i==(s-1))
+		{
+			cout<<index.at(i)<<"\n";
+		}
+		else
+		{
+			cout<<index.at(i)<<",";
+		}
+	}
+}
+void list_polygon_more(float a[][100],float b[][100],int A,vector<int> B,int D)   //operation 3 level 2.
+{
+	vector<int> index;
+	for(int i=0; i<A ; i++)
+	{
+		float marsafy_x[100];
+	    float marsafy_y[100];
+		int count=0;
+		for(int j=0 ; j<B.at(i) ; j++)
+		{
+			marsafy_x[j]=a[i][j];
+			marsafy_y[j]=b[i][j];
+			count++;
+		}
+		vector<float> hassan_x;
+		vector<float> hassan_y;
+		for(int k=0 ; k<count ; k++)
+		{
+			hassan_x.push_back(marsafy_x[k]);
+			hassan_y.push_back(marsafy_y[k]);
+		}
+		int c=hassan_x.size();
+		for(int m=0; m<c-1 ; m++)
+		{
+			if((hassan_x[m]==hassan_x[m+1])&&(hassan_y[m]==hassan_y[m+1]))
+			{
+				hassan_x.erase(hassan_x.begin()+(m));
+				hassan_y.erase(hassan_y.begin()+(m));
+				c--;
+				m--;
+			}
+		}
+		for(int t=0 ; t<c-2 ; t++)
+		{
+			float mqam1=hassan_x[t+2]-hassan_x[t+1];
+		    float mqam2=hassan_x[t+1]-hassan_x[t];
+		    float slope1=(hassan_y[t+2]-hassan_y[t+1])/mqam1;
+		    float slope2=(hassan_y[t+1]-hassan_y[t])/mqam2;
+			if((slope1==slope2)||((mqam1==0)&&(mqam2==0)))
+		{
+			hassan_x.erase(hassan_x.begin()+(t+1));
+			hassan_y.erase(hassan_y.begin()+(t+1));
+			c--;
+			t--;
+
+		}
+		}
+		if(hassan_x[0]==hassan_x[c-1]&&hassan_y[0]==hassan_y[c-1])
+	{
+		hassan_x.erase(hassan_x.begin()+(c-1));
+		hassan_y.erase(hassan_y.begin()+(c-1));
+		c--;
+	}
+		float mqam3=hassan_x[0]-hassan_x[c-1];
+	    float mqam4=hassan_x[c-1]-hassan_x[c-2];
+	    float slope3=(hassan_y[0]-hassan_y[c-1])/mqam3;
+	    float slope4=(hassan_y[c-1]-hassan_y[c-2])/mqam4;
+	if((slope3==slope4)||((mqam3==0)&&(mqam4==0)))
+	{
+		hassan_x.erase(hassan_x.begin()+(c-1));
+		hassan_y.erase(hassan_y.begin()+(c-1));
+		c--;
+	}
+	float mqam5=hassan_x[1]-hassan_x[0];
+	float mqam6=hassan_x[0]-hassan_x[c-1];
+	float slope5=(hassan_y[1]-hassan_y[0])/mqam5;
+	float slope6=(hassan_y[0]-hassan_y[c-1])/mqam6;
+	
+	if((slope5==slope6)||((mqam5==0)&&(mqam6==0)))
+	{
+	    hassan_x.erase(hassan_x.begin());
+		hassan_y.erase(hassan_y.begin());
+		c--;
+	}
+	if(c>D)
+	{
+		index.push_back(i+1);
+	}
+	}
+	int s=index.size();
+	if(s==0)
+	{
+		cout<<"none"<<"\n";
+	}
+	for(int i=0 ; i<s ; i++)
+	{
+		if(i==(s-1))
+		{
+			cout<<index.at(i)<<"\n";
+		}
+		else
+		{
+			cout<<index.at(i)<<",";
+		}
+	}
+}
+void points_polygon(float a[][100],float b[][100],int A,vector<int> B,float hassan_x,float hassan_y) //operation 2 in level 2.
+{
+	vector<int> index;
+	for(int i=0 ;i<A ;i++)
+	{
+		for(int j=0 ; j<B.at(i) ; j++)
+		{
+			if((hassan_x==a[i][j])&&(hassan_y==b[i][j]))
+			{
+				index.push_back(i+1);
+			}
+			
+		}
+	}
+	int v=index.size();
+	for(int i=0; i<v-1 ; i++)
+	{
+		if((index.at(i))==(index.at(i+1)))
+		{
+			index.erase(index.begin()+(i+1));
+			v--;
+			i--;
+		}
+	}
+	if(v==0)
+	{
+		cout<<"none"<<"\n";
+	}
+	else
+	{
+	for(int i=0 ;i<v; i++)
+	{
+		if(i==(v-1))
+		{
+			cout<<index.at(i)<<"\n";
+		}
+		else
+		{
+			cout<<index.at(i)<<",";
+		}
+	}
+	}
+}
+void polygon_points(float a[][100],float b[][100],int A,int B)  //operation 1 in level 1.
+{
+	vector<float> polygon_x;
+	vector<float> polygon_y;
+	for(int j=0; j<B ; j++ )
+	{
+		polygon_x.push_back(a[A][j]);
+		polygon_y.push_back(b[A][j]);
+	}
+	int c=polygon_x.size();
+	for(int i=0 ; i<c-1; i++)
+	{
+		if(polygon_x[i]==polygon_x[i+1])
+		{
+			if(polygon_y[i]==polygon_y[i+1])
+			{
+				polygon_x.erase(polygon_x.begin()+(i));
+				polygon_y.erase(polygon_y.begin()+(i));
+			    c--;
+			    i--;
+			
+		}
+	}
+	}
+	for(int i=0 ; i<c-2 ; i++)
+	{
+		float mqam1=polygon_x[i+2]-polygon_x[i+1];
+		float mqam2=polygon_x[i+1]-polygon_x[i];
+		float slope1=(polygon_y[i+2]-polygon_y[i+1])/mqam1;
+		float slope2=(polygon_y[i+1]-polygon_y[i])/mqam2;
+
+		if((slope1==slope2)||((mqam1==0)&&(mqam2==0)))
+		{
+			polygon_x.erase(polygon_x.begin()+(i+1));
+			polygon_y.erase(polygon_y.begin()+(i+1));
+			c--;
+		}
+
+	}
+	if(polygon_x[0]==polygon_x[c-1]&&polygon_y[0]==polygon_y[c-1])
+	{
+		polygon_x.erase(polygon_x.begin()+(c-1));
+		polygon_y.erase(polygon_y.begin()+(c-1));
+		c--;
+	}
+	float mqam3=polygon_x[0]-polygon_x[c-1];
+	float mqam4=polygon_x[c-1]-polygon_x[c-2];
+	float slope3=(polygon_y[0]-polygon_y[c-1])/mqam3;
+	float slope4=(polygon_y[c-1]-polygon_y[c-2])/mqam4;
+	if((slope3==slope4)||((mqam3==0)&&(mqam4==0)))
+	{
+		polygon_x.erase(polygon_x.begin()+(c-1));
+		polygon_y.erase(polygon_y.begin()+(c-1));
+		c--;
+	}
+	float mqam5=polygon_x[1]-polygon_x[0];
+	float mqam6=polygon_x[0]-polygon_x[c-1];
+	float slope5=(polygon_y[1]-polygon_y[0])/mqam5;
+	float slope6=(polygon_y[0]-polygon_y[c-1])/mqam6;
+	
+	if((slope5==slope6)||((mqam5==0)&&(mqam6==0)))
+	{
+	    polygon_x.erase(polygon_x.begin());
+		polygon_y.erase(polygon_y.begin());
+		c--;
+	}
+	for(int i=0 ; i<c ; i++)
+	{
+		if(i==(c-1))
+		{
+			cout<<'('<< polygon_x.at(i)<<','<<polygon_y.at(i)<<')'<<"\n";
+		}
+		else
+		{
+		cout<<'('<< polygon_x.at(i)<<','<<polygon_y.at(i)<<')'<<',';
+		}
+	}
+		
+}
+int redandant(float a[], float b[] ,int A) //redandant
+{
+	int count1=0;
+	vector <float> redandant_x;
+	vector <float> redandant_y;
+	for(int i=0 ; i<A ; i++)
+	{
+		redandant_x.push_back(a[i]);
+		redandant_y.push_back(b[i]);
+	}
+	int c=redandant_x.size();
+	for(int i=0 ; i<c-1; i++)
+	{
+		if(redandant_x[i]==redandant_x[i+1])
+		{
+			if(redandant_y[i]==redandant_y[i+1])
+			{
+			count1++;
+			redandant_x.erase(redandant_x.begin()+(i));
+			redandant_y.erase(redandant_y.begin()+(i));
+			c--;
+			i--;
+			
+		}
+	}
+	}
+	for(int i=0 ; i<c-2 ; i++)
+	{
+		float mqam1=redandant_x[i+2]-redandant_x[i+1];
+		float mqam2=redandant_x[i+1]-redandant_x[i];
+		float slope1=(redandant_y[i+2]-redandant_y[i+1])/mqam1;
+		float slope2=(redandant_y[i+1]-redandant_y[i])/mqam2;
+
+		if((slope1==slope2)||((mqam1==0)&&(mqam2==0)))
+		{
+			count1++;
+			redandant_x.erase(redandant_x.begin()+(i+1));
+			redandant_y.erase(redandant_y.begin()+(i+1));
+			c--;
+			i--;
+
+		}
+
+	}
+	if(redandant_x[0]==redandant_x[c-1]&&redandant_y[0]==redandant_y[c-1])
+	{
+		    count1++;
+	}
+	
+	
+	float mqam3=redandant_x[0]-redandant_x[c-1];
+	float mqam4=redandant_x[c-1]-redandant_x[c-2];
+	float slope3=(redandant_y[0]-redandant_y[c-1])/mqam3;
+	float slope4=(redandant_y[c-1]-redandant_y[c-2])/mqam4;
+	if((slope3==slope4)||((mqam3==0)&&(mqam4==0)))
+	{
+		count1++;
+	}
+	
+	float mqam5=redandant_x[1]-redandant_x[0];
+	float mqam6=redandant_x[0]-redandant_x[c-1];
+	float slope5=(redandant_y[1]-redandant_y[0])/mqam5;
+	float slope6=(redandant_y[0]-redandant_y[c-1])/mqam6;
+	
+	if((slope5==slope6)||((mqam5==0)&&(mqam6==0)))
+	{
+		count1++;
+	}
+	
+	return count1;
+}
+int main()
+{
+	string x;
+	getline(cin,x);
+	int no_polygons;
+	int no_points;
+	int count1=1;
+	int count2=0;
+	for(int i = 0 ; i< x.length() ; i++)
+	{
+		if(x[i]==';')
+		{
+			count1++;
+		}
+	}
+	for(int i=0 ; i<x.length() ; i++)
+	{
+		if(x[i]=='(')
+		{
+			count2++;
+		}
+	}
+	no_polygons=count1;
+	no_points=count2;
+	//first function.
+    // secound function.
+	string str_array_x[100][100];
+	string str_array_y[100][100];
+	float array_x[100][100];
+	float array_y[100][100];
+	vector<int> inner_index1;
+	int index1=0;
+	int index2=0;
+	int index3=0;
+	int index4=0;
+
+
+	for(int i=0 ; i<x.length() ; i++)
+	{
+		if(x[i]=='(')
+		{
+			for(int j=i+1 ;; j++)
+			{
+				if(x[j]==',')
+				{
+					str_array_x[index1][index2]=x.substr(i+1 , j-i-1);
+					array_x[index1][index2]=atof(str_array_x[index1][index2].c_str());
+					index2=index2+1;
+					break;
+				}
+			}
+		}
+			if(x[i]==';')
+			{
+				inner_index1.push_back(index2);
+
+				index1++;
+				index2=0;
+			}
+	}
+	inner_index1.push_back(index2);
+	for(int i=0 ; i<x.length() ; i++)
+	{
+		if(x[i]==',')
+		{
+			for(int j=i+1 ;; j++)
+			{
+				if(x[j]==')')
+				{
+					str_array_y[index3][index4]=x.substr(i+1,j-i-1);
+					array_y[index3][index4]=atof(str_array_y[index3][index4].c_str());
+					index4=index4+1;
+					i=j+1;
+					break;
+				}
+			}
+		}
+			if(x[i]==';')
+			{
+				
+				index3++;
+				index4=0;
+			}
+	}
+	float min_x=array_x[0][0];
+	for(int i=0 ; i<=index1; i++)
+	{
+		for(int j=0 ; j<inner_index1.at(i) ; j++)
+		{
+			if(array_x[i][j] < min_x)
+			{
+				min_x=array_x[i][j];
+			}
+		}
+	}
+	float max_x=array_x[0][0];
+	for(int i = 0 ; i<=index1 ; i++)
+	{
+		for(int j=0 ; j<inner_index1.at(i) ; j++)
+		{
+			if(array_x[i][j]>max_x)
+			{
+				max_x=array_x[i][j];
+			}
+		}
+	}
+	float min_y=array_y[0][0];
+	for(int i=0 ; i<=index3 ; i++)
+	{
+		for(int j=0 ; j<inner_index1.at(i) ; j++)
+		{
+			if(array_y[i][j] < min_y)
+			{
+				min_y=array_y[i][j];
+			}
+		}
+	}
+		float max_y=array_y[0][0];
+	for(int i = 0 ; i<=index3 ; i++)
+	{
+		for(int j=0 ; j<inner_index1.at(i); j++)
+		{
+			if(array_y[i][j]>max_y)
+			{
+				max_y=array_y[i][j];
+			}
+		}
+	}
+	
+	//third operatin.
+	
+	//forth operation.
+	
+	//fifth operation.
+	
+	//sexith operation.
+	//seventh opration.
+	int RE=0;
+	int count3=0;
+	for(int i=0 ; i<=index1 ; i++)
+	{
+		float marsafy_x[100];
+		float marsafy_y[100];
+		for( int j=0;  j<inner_index1.at(i) ; j++)
+		{
+			marsafy_x[j]=array_x[i][j];
+			marsafy_y[j]=array_y[i][j];
+			count3++;
+		}
+		RE=RE+redandant(marsafy_x,marsafy_y,count3);
+		count3=0;
+	}
+	//eighth operation.
+	string ahmed;
+	while(1)
+	{
+		getline(cin,ahmed);
+		if(ahmed=="Quit")
+		{
+			break;
+		}
+		  while(1)
+		{
+			if(ahmed=="Number_Polygons")
+			{
+				cout<<no_polygons<<"\n";
+				break;
+			}
+			else if(ahmed=="Total_Number_Points")
+			{
+				cout<<no_points<<"\n";
+				break;
+			}
+			else if(ahmed=="Minimum_X")
+			{
+				cout<<min_x<<"\n";
+				break;
+			}
+			else if(ahmed=="Maximum_X")
+			{
+				cout<<max_x<<"\n";
+				break;
+			}
+			else if(ahmed=="Minimum_Y")
+			{
+				cout<<min_y<<"\n";
+				break;
+			}
+			else if(ahmed=="Maximum_Y")
+			{
+				cout<<max_y<<"\n";
+				break;
+			}
+			else if(ahmed=="Enclosing_Rectangle")
+			{
+				cout<<'('<< max_x<<','<<max_y<<')'<<',';
+	            cout<<'('<< max_x<<','<<min_y<<')'<<',';
+	            cout<<'('<< min_x<<','<<min_y<<')'<<',';
+	            cout<<'('<< min_x<<','<<max_y<<')'<<"\n";
+				break;
+			}
+			else if(ahmed=="Total_Redundant_Points")
+			{
+				cout<<RE<<endl;
+				break;
+			}
+			else if(ahmed.substr(0,14)=="Polygon_Points")
+			{
+				int L=ahmed.length();
+				string c=ahmed.substr(15,L-15);
+				int hassan=stoi(c);
+				for(int i=0; i<= no_polygons ; i++)
+	              {
+		              if(hassan==i)
+		                  {
+		                 	polygon_points(array_x,array_y,(i-1),inner_index1.at(i-1));
+		                  }
+	              }
+				break;
+			}
+			else if(ahmed.substr(0,14)=="Point_Polygons")
+			{
+				int L=ahmed.length();
+				string c2;
+				string c3;
+				float hassan_x;
+	            float hassan_y;
+	            for(int i=0 ; i<L ; i++)
+	                    {
+		                   if(ahmed[i]=='(')
+		                   {
+			                  for(int j=i+1 ; ;j++)
+			                      {
+				                    if(ahmed[j]==',')
+				                     {
+					                    c2=ahmed.substr((i+1),j-i-1);
+					                    break;
+				                     }
+			                      }
+		                    }
+		                    if(ahmed[i]==',')
+		                      {
+			                    for(int J=i+1; ; J++)
+			                       {
+				                     if(ahmed[J]==')')
+				                      {
+					                    c3=ahmed.substr(i+1,J-i-1);
+					                     break;
+				                      }
+			                       }
+		                        }
+	                   }
+	hassan_x= atof(c2.c_str());
+	hassan_y = atof(c3.c_str());
+	points_polygon(array_x,array_y,no_polygons,inner_index1,hassan_x,hassan_y);
+	break;
+			}
+			else if(ahmed.substr(0,25)=="List_Polygons_Points More")
+			{
+				int L=ahmed.length();
+				string c=ahmed.substr(26,L-26);
+	            int hassan=stoi(c);
+				list_polygon_more(array_x,array_y,no_polygons,inner_index1,hassan);
+				break;
+			}
+			else if(ahmed.substr(0,25)=="List_Polygons_Points Less")
+			{
+				int L=ahmed.length();
+	           string c=ahmed.substr(26,L-26);
+	            int hassan=stoi(c);
+	            list_polygon_less(array_x,array_y,no_polygons,inner_index1,hassan);
+				break;
+			}
+			else if(ahmed.substr(0,26)=="List_Polygons_Points Equal")
+			{
+				
+	            int L=ahmed.length();
+				string c=ahmed.substr(27,L-27);
+				int hassan=stoi(c);
+	            list_polygon_equal(array_x,array_y,no_polygons,inner_index1,hassan);
+				break;
+			}
+			else if(ahmed.substr(0,25)=="List_Points_Polygons More")
+			{
+				int L=ahmed.length();
+				string c=ahmed.substr(26,L-26);
+	            int hassan=stoi(c);
+	            list_points_more(array_x,array_y,no_polygons,inner_index1,hassan);
+				break;
+			}
+			else if(ahmed.substr(0,25)=="List_Points_Polygons Less")
+			{
+				int L=ahmed.length();
+	            string c=ahmed.substr(26,L-26);
+	            int hassan=stoi(c);
+	            list_points_less(array_x,array_y,no_polygons,inner_index1,hassan);
+				break;
+			}
+			else if(ahmed.substr(0,26)=="List_Points_Polygons Equal")
+			{
+				int L=ahmed.length();
+				string c=ahmed.substr(27,L-27);
+				int hassan=stoi(c);
+	            list_points_equal(array_x,array_y,no_polygons,inner_index1,hassan);
+				break;
+			}
+			else if(ahmed.substr(0,17)=="Polygon_Perimeter")
+			{
+				int L=ahmed.length();
+				string c=ahmed.substr(18,L-18);
+	            int hassan=stoi(c);
+	polygon_perimeter(array_x,array_y,hassan,inner_index1);
+	break;
+			}
+			else if(ahmed=="List_Triangles")
+			{
+				list_triangles(array_x,array_y,no_polygons,inner_index1);
+				break;
+			}
+			else if(ahmed=="List_Rectangles")
+			{
+				list_rectangles(array_x,array_y,no_polygons,inner_index1);
+				break;
+			}
+			else if(ahmed=="List_Trapezoid")
+			{
+
+				list_trapazoid(array_x,array_y,no_polygons,inner_index1);
+				break;
+			}
+			else if(ahmed.substr(0,13)=="Inside_Circle")
+			{
+				int L=ahmed.length();
+				string c2;
+				string c3;
+				string c4;
+				float hassan_x;
+	            float hassan_y;
+				float radius;
+	            for(int i=0 ; i<L ; i++)
+	                    {
+		                   if(ahmed[i]=='(')
+		                   {
+			                  for(int j=i+1 ; ;j++)
+			                      {
+				                    if(ahmed[j]==',')
+				                     {
+					                    c2=ahmed.substr((i+1),j-i-1);
+					                    break;
+				                     }
+			                      }
+		                    }
+		                    if(ahmed[i]==',')
+		                      {
+			                    for(int J=i+1; ; J++)
+			                       {
+				                     if(ahmed[J]==')')
+				                      {
+					                    c3=ahmed.substr((i+1),J-i-1);
+					                     break;
+				                      }
+			                       }
+		                        }
+							if(ahmed[i]==')')
+							{
+								for(int h=i+1;;h++)
+								{
+									if(ahmed[h]==',')
+									{
+										c4=ahmed.substr(h+1);
+										i++;
+										break;
+									}
+								}
+							}
+				}
+				hassan_x= atof(c2.c_str());
+				hassan_y= atof(c3.c_str());
+				radius= atof(c4.c_str());
+				Inside_Circle(array_x,array_y,no_polygons,inner_index1,hassan_x,hassan_y,radius);
+				break;
+			}
+			else if(ahmed.substr(0,12)=="Polygon_Area")
+			{
+				int L=ahmed.length();
+				string c=ahmed.substr(13,L-13);
+	            int hassan=stoi(c);
+				float x=polygon_Area(array_x,array_y,hassan,inner_index1);
+				cout<<x<<"\n";
+	            break;
+			}
+			else if(ahmed.substr(0,19)=="Polygons_Area_Range")
+			{
+				vector<int> index500;
+				int L=ahmed.length();
+				string c1;
+				string c2;
+				float min_area;
+				float max_area;
+				for(int i=0 ; i<L ; i++)
+				{
+					if(ahmed[i]==',')
+					{
+						c1=ahmed.substr(20,(i-20));
+						c2=ahmed.substr(i+1);
+					}
+				}
+				min_area= atof(c1.c_str());
+				max_area= atof(c2.c_str());
+				for(int i=1; i<=no_polygons ; i++)
+				{
+					float x=polygon_Area(array_x,array_y,i,inner_index1);
+					int y=Polygons_Area_Range(min_area,max_area,x,i);
+					index500.push_back(y);
+				}
+				int z=index500.size();
+				for(int j=0 ;j<z ; j++ )
+				{
+					if(index500.at(j)==0)
+					{
+						index500.erase(index500.begin()+j);
+						z--;
+						j--;
+					}
+				}
+				for(int k=0; k<z ; k++)
+				{
+					if(k==(z-1))
+					{
+						cout<<index500.at(k)<<"\n";
+					}
+					else
+					{
+						cout<<index500.at(k)<<",";
+					}
+				}
+			}
+			else if(ahmed.substr(0,16)=="Inside_Rectangle")
+			{
+				vector<string> xat;
+				vector<string> yat;
+				vector<float> xr;
+				vector<float> y;
+				int L=ahmed.length();
+				for(int i=0 ; i<L; i++)
+				{
+					if(ahmed[i]=='(')
+					{
+						int f=ahmed.find(',',i);
+						xat.push_back(ahmed.substr(i+1,f-(i+1)));
+					}
+				}
+				for (int i = 0; i <L; i++)
+				{
+					if (ahmed[i]=='(')
+					{
+						int q=ahmed.find(',',i);
+						int p=ahmed.find(')',q);
+						yat.push_back(ahmed.substr(q+1,p-(q+1)));
+					}
+				}
+				string str_x[4];
+				string str_y[4];
+				float flo_x[4];
+				float flo_y[4];
+				int c=xat.size();
+				for(int i=0 ; i<c ; i++)
+				{
+					str_x[i]=xat[i];
+					str_y[i]=yat[i];
+				}
+				for(int i=0 ;i<c ; i++)
+				{
+					flo_x[i]=atof(str_x[i].c_str());
+					flo_y[i]=atof(str_y[i].c_str());
+				}
+				for(int i=0 ;i<c; i++)
+				{
+					xr.push_back(flo_x[i]);
+					y.push_back(flo_y[i]);
+				}
+				float maxx=xr[0];
+				float minx=xr[0];
+				float maxy=y[0];
+				float miny=y[0];
+				for(int i=0; i<c; i++)
+				{
+					if(xr[i]>maxx)
+					{
+						maxx=xr[i];
+					}
+				}
+				for(int i=0; i<c; i++)
+				{
+					if(xr[0]<minx)
+					{
+						minx=xr[i];
+					}
+				}
+				for(int i=0; i<c; i++)
+				{
+					if(y[i]>maxy)
+					{
+						maxy=y[i];
+					}
+				}
+				for(int i=0; i<c; i++)
+				{
+					if(y[i]<miny)
+					{
+						miny=y[i];
+					}
+				}
+				Inside_Rectangle(array_x,array_y,no_polygons,inner_index1,maxx,minx,maxy,miny);
+				break;
+	}
+			break;
+			}
+			}
+    return 0 ;
+}
